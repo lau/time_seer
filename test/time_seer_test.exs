@@ -31,4 +31,16 @@ defmodule TimeSeerTest do
     assert TimeSeer.time("12.12.33 am") == { 0, 12, 33 }
     assert TimeSeer.time("10:12:33 PM") == { 22, 12, 33 }
   end
+
+  test "time parsing of invalid time should return nil" do
+    assert TimeSeer.time("25:00") == nil
+    assert TimeSeer.time("24:00") == nil
+    assert TimeSeer.time("0:60") == nil
+    assert TimeSeer.time("0:60:60") == nil
+    assert TimeSeer.time("10:10:99") == nil
+  end
+
+  test "date parsing of invalid date should return nil" do
+    assert TimeSeer.date("2014-12-99", :yyyymmdd) == nil
+  end
 end

@@ -1,17 +1,17 @@
 defmodule TimeSeer do
   def date(string, :mmddyyyy) do
     map = map_date(string)
-    { to_int(map["third"]), to_int(map["first"]), to_int(map["second"]) }
+    { to_int(map["third"]), to_int(map["first"]), to_int(map["second"]) } |> validate_date
   end
 
   def date(string, :ddmmyyyy) do
     map = map_date(string)
-    { to_int(map["third"]), to_int(map["second"]), to_int(map["first"]) }
+    { to_int(map["third"]), to_int(map["second"]), to_int(map["first"]) } |> validate_date
   end
 
   def date(string, :yyyymmdd) do
     map = map_date(string)
-    { to_int(map["first"]), to_int(map["second"]), to_int(map["third"]) }
+    { to_int(map["first"]), to_int(map["second"]), to_int(map["third"]) } |> validate_date
   end
 
   def date(string) do date(string, :yyyymmdd) end
@@ -23,7 +23,7 @@ defmodule TimeSeer do
     if ampm do hour = ampm_to_24_hour(hour, String.downcase(hd(ampm))) end
     seconds = 0
     if (map["third"]!="") do seconds = to_int(map["third"]) end
-    { hour , to_int(map["second"]), seconds }
+    { hour , to_int(map["second"]), seconds } |> validate_time
   end
 
   # If am: for the first hour at and after midnight subtract 12 hours so we get 0
@@ -38,5 +38,22 @@ defmodule TimeSeer do
 
   def to_int(string) do
     elem(Integer.parse(string),0)
+  end
+
+  def validate_date(date) do
+    if (:calendar.valid_date(date)) do date else nil end
+  end
+
+  def validate_time(time) do
+    cond do
+      elem(time, 0) > 23 ->
+        nil
+      elem(time, 1) > 59 ->
+        nil
+      elem(time, 2) > 59 ->
+        nil
+      true ->
+        time
+    end
   end
 end
