@@ -18,6 +18,14 @@ defmodule TimeSeer do
 
   def time(string) do
     map = Regex.named_captures(~r/(?<first>[0-9]{1,2})[\:\.](?<second>[0-9]{1,2})[\:\.]?(?<third>[0-9]{1,2})?/, string)
+    process_time_regexed(string, map)
+  end
+
+  def process_time_regexed(string, nil) do
+    nil
+  end
+
+  def process_time_regexed(string, map) do
     hour = to_int(map["first"])
     ampm = Regex.run(~r/[ap]m/i, string)
     if ampm do hour = ampm_to_24_hour(hour, String.downcase(hd(ampm))) end

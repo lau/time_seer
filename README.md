@@ -6,7 +6,7 @@ Status](https://travis-ci.org/lau/time_seer.svg?branch=master)](https://travis-c
 
 Parse strings of dates and times and convert them to Erlang style tuples.
 
-The purpose is to parse dates and times providing input that is unambigous, but it does not to be in a very strict specific format. So for example TimeSeer.time("3:54pm") and TimeSeer.time("15.54.00 ") will both work.
+The purpose is to parse dates and times providing input that is unambigous, but it does not have to be in a very strict specific format. So for example TimeSeer.time("3:54pm") and TimeSeer.time("15.54.00 ") will both work.
 
 ## Examples
 

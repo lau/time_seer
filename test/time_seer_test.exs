@@ -18,6 +18,10 @@ defmodule TimeSeerTest do
     assert TimeSeer.date("2014-12-24") == { 2014, 12, 24 }
   end
 
+  test "time parsing of invalid input" do
+    assert TimeSeer.time("") == nil
+  end
+
   test "time parsing" do
     assert TimeSeer.time("10:12am") == { 10, 12, 0 }
     assert TimeSeer.time("12:00am") == { 0, 0, 0 }
