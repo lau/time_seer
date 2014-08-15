@@ -3,8 +3,8 @@ defmodule TimeSeer.Mixfile do
 
   def project do
     [app: :time_seer,
-     version: "0.0.3",
-     elixir: "~> 0.15.1",
+     version: "0.0.4",
+     elixir: "~> 0.15.0",
      package: package,
      description: description,
      deps: deps]
