@@ -8,6 +8,10 @@ Parse strings of dates and times and convert them to Erlang style tuples.
 
 The purpose is to parse dates and times providing input that is unambigous, but it does not have to be in a very strict specific format. So for example TimeSeer.time("3:54pm") and TimeSeer.time("15.54.00 ") will both work.
 
+```elixir
+{:time_seer, "~> 0.0.6}
+```
+
 ## Examples
 
     iex> TimeSeer.date("2014-1-31")
